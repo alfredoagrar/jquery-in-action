@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Add jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    // Declarar una variable global para los productos
+    let products = [];
+
+    $(document).ready(function(){
+        let url = "https://api.escuelajs.co/api/v1/products";
+        
+        // Cargar los productos en la variable global
+        $.getJSON(url, function(result) {
+            products = result;
+            renderProducts();
+        });
+
+        // Delegación de eventos para ocultar el elemento p y su padre li
+        $(document).on("click", "p.element", function(){
+            $(this).closest("li").fadeOut();
+        });
+    });
+
+    // Función para renderizar los productos en la lista
+    function renderProducts() {
+        products.forEach(product => {
+            $("#ProductsList").append("<li><p class='element'>" + product.title + "</p></li>");
+        });
+    }
+
+    // Ejemplo de otra función que usa los productos globales
+    function logProducts() {
+        console.log(products);
+    }
+    </script>
+</head>
+<body>
+    <div>
+        <ul id="ProductsList"></ul>
+    </div>
+    <button onclick="logProducts()">Log Products</button>
+</body>
+</html>
