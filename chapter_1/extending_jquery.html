@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Add JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // Custom functionn extension
+        $.fn.disable = function() {
+            return this.each(function() {
+            if (typeof this.disabled != "undefined") this.disabled = true;
+            });
+        }
+
+        $(function(){
+            $("form#myForm input.special").disable();
+        });
+    </script>
+</head>
+<body>
+    <form id="myForm">
+        <input class="special" type="text" name="name" id="name" placeholder="Name" disabled="false">
+        <input class="special" type="text" name="email" id="email" placeholder="Email">
+        <input class="special" type="submit" value="Submit">
+    </form>
+</body>
+</html>
